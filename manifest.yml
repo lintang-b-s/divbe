@@ -1,0 +1,10 @@
+---
+applications:
+- path: .
+  name: toko-hewan
+  memory: 128M
+  instances: 1
+  command: node toko-hewan.js
+  buildpack: nodejs_buildpack
+  routes: 
+    - route: lintangbirda12.au-syd.cf.appdomain.cloud

@@ -42,7 +42,10 @@ const reviewRoutes = require('./routes/reviews');
 // DB_URL=mongodb+srv://lintang:lintang@toko-hewan.injvyus.mongodb.net/?retryWrites=true&w=majority
 // SECRET=inirahasia
 // const dbUrl = 'mongodb://localhost:27017/toko-hewan';
-// const MongoDBStore = require("connect-mongo")(session);
+
+
+
+// const MongoDBStore = new require("connect-mongo")(session);
 
 const dbUrl = process.env.DB_URL
 mongoose.connect(dbUrl , {
@@ -80,16 +83,20 @@ app.use(mongoSanitize({
 }))
 
 const secret = process.env.SECRET || 'inirahasia' ;
-//SECRET=inirahasia
-// const store = new MongoDBStore({
+// // SECRET=inirahasia
+
+
+// const store = MongoDBStore.create({
 //   url: dbUrl,
 //   secret,
 //   touchAfter: 24*60 * 60
 // })
 
+
 // store.on("error", function(e) {
 //   console.log("session store error", e)
 // })
+
 
 const sessionConfig = {
   // store,
