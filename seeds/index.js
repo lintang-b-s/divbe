@@ -1,9 +1,14 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+  }
+
 const mongoose = require('mongoose');
 const animals  = require('./animals');
 const { name } = require('./seedHelpers');
 const Product = require('../models/product');
-
-mongoose.connect('mongodb://localhost:27017/toko-hewan', {
+const dbUrl = process.env.DB_URL
+// 'mongodb://localhost:27017/toko-hewan'
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
@@ -26,7 +31,7 @@ const seedDB = async () => {
         const price = Math.floor(Math.random() * 20) + 10;
         const product = new Product({
             //YOUR USER ID
-            author: '6316e2e82be9824338038bd3',
+            author: '631739db43a99315d4a89247',
             category : `${animals[random15].category}`,
             name: `${sample(name)} `,
             description: `${animals[random15].description}`,

@@ -26,14 +26,26 @@ const User = require('./models/user');
 const helmet = require('helmet');
 
 const mongoSanitize = require('express-mongo-sanitize');
-
+// const dbUrl = process.env.DB_URL
 
 
 const userRoutes = require('./routes/users');
 const productRoutes = require('./routes/products');
 const reviewRoutes = require('./routes/reviews');
+// 'mongodb://localhost:27017/toko-hewan'
+// dbUrl
+//DB_URL=mongodb+srv://lintang:lintang@toko-hewan.dbwnmei.mongodb.net/?retryWrites=true&w=majority
+// CLOUDINARY_CLOUD_NAME=protagonist007
+// CLOUDINARY_KEY=841684697529243
+// CLOUDINARY_SECRET=rZLYUAsQ0QCuHwg3aKXUsgyiuIw
+// MAPBOX_TOKEN=pk.eyJ1IjoicHJvdGFnb25pc3QwMDciLCJhIjoiY2w2aDV0MGgxMGVkbjNkb3pqd3k5bjFyaCJ9.TtrJRfR31b1rYk5Uyw7uGw
+// DB_URL=mongodb+srv://lintang:lintang@toko-hewan.injvyus.mongodb.net/?retryWrites=true&w=majority
+// SECRET=inirahasia
+// const dbUrl = 'mongodb://localhost:27017/toko-hewan';
+// const MongoDBStore = require("connect-mongo")(session);
 
-mongoose.connect('mongodb://localhost:27017/toko-hewan', {
+const dbUrl = process.env.DB_URL
+mongoose.connect(dbUrl , {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -67,9 +79,22 @@ app.use(mongoSanitize({
   replaceWith: '_'
 }))
 
+const secret = process.env.SECRET || 'inirahasia' ;
+//SECRET=inirahasia
+// const store = new MongoDBStore({
+//   url: dbUrl,
+//   secret,
+//   touchAfter: 24*60 * 60
+// })
+
+// store.on("error", function(e) {
+//   console.log("session store error", e)
+// })
+
 const sessionConfig = {
+  // store,
   name: 'session',
-  secret: 'thisshouldbeabettersecret!',
+  secret,
   resave: false,
   saveUninitialized: true,
   cookie: {
