@@ -118,7 +118,7 @@ app.use(helmet());
 
 const scriptSrcUrls = [
   "https://stackpath.bootstrapcdn.com/",
-  "https://api.tiles.mapbox.com/",
+  
   "https://cdnjs.cloudflare.com/",
   
   "https://kit.fontawesome.com/",
