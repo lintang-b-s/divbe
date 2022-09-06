@@ -1,1 +1,0 @@
-# LintangBirdaSaputra_backend
